@@ -1,6 +1,5 @@
 <?php
     require_once("Line.php");
-    require_once("Font.php");
 
     class Page{
 
@@ -23,7 +22,7 @@
             $this->width = $width;
             $this->lines = $lines;
             $this->fonts = $fonts;
-        }
+        } 
 
         public function getHtml(){
             foreach ($this->lines as $value) {
@@ -31,6 +30,8 @@
                 $arrLine[] = $value->getHtml();
 
             }
+            
+            
             return "<div>". implode(" ",$arrLine). "</div>";
         }
 

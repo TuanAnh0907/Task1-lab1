@@ -5,34 +5,36 @@
     
     $xml = simplexml_load_file($document);
     
-    foreach ($xml->page as $text) {
+    foreach ($xml->page as $value) {
 
-        foreach ($text->text as $key) {
+        foreach ($value->text as $key) {
             
             $top = $key->attributes()['top'];
             $left = $key->attributes()['left'];
             $width = $key->attributes()['width'];
             $height = $key->attributes()['height'];
             $font = $key->attributes()['font'];
-            $valueString = $key->__toString();
+            $valueText = $key->__toString();
             
-            $line = new Line($top, $left, $width, $height, $font, $valueString );
+            $line = new Line($top, $left, $width, $height, $font, $valueText );
             $arr[] = $line;
+            
         }
         
-        $number = $text->attributes()['number'];
-        $position = $text->attributes()['position'];
-        $top = $text->attributes()['top'];
-        $left = $text->attributes()['left'];
-        $height = $text->attributes()['height'];
-        $width = $text->attributes()['width'];
-
+        $number = $value->attributes()['number'];
+        $position = $value->attributes()['position'];
+        $top = $value->attributes()['top'];
+        $left = $value->attributes()['left'];
+        $height = $value->attributes()['height'];
+        $width = $value->attributes()['width'];
+        
         $page = new Page($number,$position, $top, $left, $height, $width, $arr);
-
+        
+        unset($arr);
+        
         echo $page->getHtml();
         
-        die();  
-
+        // var_dump($page);
+        // die();
     }
-
 ?>
