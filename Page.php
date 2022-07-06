@@ -1,40 +1,69 @@
 <?php
-    include_once ("Font.php");
-    include_once ("Text.php");
+    require_once("Line.php");
+    require_once("Font.php");
+
     class Page{
 
-        public $xml;
+        private $number;
+        private $position;
+        private $top;
+        private $left;
+        private $height;
+        private $width;
 
-        public function __construct(string $document)
+        public function setNumber($number){
+            $this->number = $number;
+        }
+
+        public function setPosition($position){
+            $this->position = $position;
+        }
+
+        public function setTop($top){
+            $this->top = $top;
+        }
+
+        public function setLeft($left){
+            $this->left = $left;
+        }
+
+        public function setHeight($height){
+            $this->height = $height;
+        }
+
+        public function setWidth($width){
+            $this->width = $width;
+        }
+
+        public function getNumber()
         {
-            $this->xml = simplexml_load_file($document);
+            return $this->number;        
         }
-
-        public function xmlPage(){
             
-            $text = new Text();
+        public function getPosition()
+        {
+            return $this->position;        
+        }
+
+        public function getTop()
+        {
+            return $this->top;        
+        }
             
-            foreach ($this->xml->page as $key) {
-                
-                $number = $key->attributes()['number'];
-                $display = "<div data-page = ". $number ." style=''><br>
-                <p> Page ". $number ." </p><br>";
-
-                // echo $text->xmlText($key);
-                foreach ($key->text as $value){
-    
-                    echo $text->xmlText($value);
-                }
-            }
-            return $display;
+        public function getLeft()
+        {
+            return $this->left;        
         }
 
-        public function getPosition(){
-            foreach ($this->xml->page as $key){
-                $position =  $key->attributes()['position'];
-            }
-            return $position;
+        public function getHeight()
+        {
+            return $this->height;        
         }
-         
+        
+        public function getWidth()
+        {
+            return $this->width;        
+        }
+
     };
 ?>

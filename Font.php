@@ -1,48 +1,44 @@
 <?php
-     class Font{
+    class Font{
+        private $id;
+        private $size;
+        private $family;
+        private $color;
 
-        private $xml;
-
-        public function __construct(string $document)
-        {   
-            $this->xml = simplexml_load_file($document);
+        public function getId()
+        {
+            return $this->id;        
         }
 
-        public function xmlFont(){
-            foreach ($this->xml->page->fontspec  as $key) {
-                # code...
-                $id = $key->attributes()['id'];
-                $size = $key->attributes()['size'];
-                $family = $key->attributes()['family'];
-                $color = $key->attributes()['color'];
-
-                $display[0] = $id;
-                $display[1] = $size;
-                $display[2] = $family;
-                $display[3] = $color;
-
-            }
-            return $display;
+        public function getSize()
+        {
+            return $this->size;        
         }
 
-        // public function getID($fontspec)
-        // {
-        //     return $fontspec->attributes()['id'];
-        // }
-            
-        // public function getSize($fontspec)
-        // {
-        //     return $fontspec->attributes()['size'];
-        // }
+        public function getFamily()
+        {
+            return $this->family;        
+        }
 
-        // public function getFamily($fontspec)
-        // {
-        //     return $fontspec->attributes()['family'];
-        // }
-            
-        // public function getColor($fontspec)
-        // {
-        //     return $fontspec->attributes()['color'];
-        // }
-    };
+        public function getColor()
+        {
+            return $this->color;        
+        }
+        
+        public function setId($id){
+            $this->id = $id;
+        }
+
+        public function setSize($size){
+            $this->size = $size;
+        }
+
+        public function setFamily($family){
+            $this->family = $family;
+        }
+
+        public function setColor($color){
+            $this->color = $color;
+        }
+    }
 ?>
