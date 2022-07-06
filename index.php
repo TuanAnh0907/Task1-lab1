@@ -24,17 +24,17 @@
         $page->setLeft($text->attributes()['left']);
         $page->setHeight($text->attributes()['height']);
         $page->setWidth($text->attributes()['width']);
-
-    return $page; 
+        return $page; 
     }
+
     function setLine($text){
-            $line = new Line();
-            $line->setTop($text->attributes()['top']);
-            $line->setLeft($text->attributes()['left']);
-            $line->setWidth($text->attributes()['width']);
-            $line->setHeight($text->attributes()['height']);
-            $line->setFont($text->attributes()['font']);
-            $line->setValue($text->__toString());
+        $line = new Line();
+        $line->setTop($text->attributes()['top']);
+        $line->setLeft($text->attributes()['left']);
+        $line->setWidth($text->attributes()['width']);
+        $line->setHeight($text->attributes()['height']);
+        $line->setFont($text->attributes()['font']);
+        $line->setValue($text->__toString());
         return $line; 
     }
 
