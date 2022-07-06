@@ -7,56 +7,23 @@
         private $font;
         private $valueString;
 
-        public function getTop()
+        public function __construct($top,$left,$width,$height,$font,$valueString = "")
         {
-            return $this->top;
+            $this->top = $top;
+            $this->left = $left;
+            $this->width = $width;
+            $this->height = $height;
+            $this->font = $font;
+            $this->valueString = $valueString;
         }
 
-        public function getLeft()
-        {
-            return $this->left;
-        }
-
-        public function getWidth()
-        {
-            return $this->width;
-        }
-
-        public function getHeight()
-        {
-            return $this->height;
-        }
-        public function getFont()
-        {
-            return $this->font;
-        }
         public function getValue()
         {
             return $this->valueString;
         }
 
-        public function setTop($top){
-            $this->top = $top;
-        }
-
-        public function setLeft($left){
-            $this->left = $left;
-        }
-
-        public function setWidth($width){
-            $this->width = $width;
-        }
-
-        public function setHeight($height){
-            $this->height = $height;
-        }
-
-        public function setFont($font){
-            $this->font = $font;
-        }
-
-        public function setValue($valueString){
-            $this->valueString = $valueString;
+        public function getHtml(){
+            return "<p  >".$this->getValue()."</p>";
         }
     }
 ?>

@@ -10,59 +10,28 @@
         private $left;
         private $height;
         private $width;
+        private $lines;
+        private $fonts;
 
-        public function setNumber($number){
+        public function __construct($number, $position, $top, $left, $height, $width, $lines, $fonts = [])
+        {
             $this->number = $number;
-        }
-
-        public function setPosition($position){
             $this->position = $position;
-        }
-
-        public function setTop($top){
             $this->top = $top;
-        }
-
-        public function setLeft($left){
             $this->left = $left;
-        }
-
-        public function setHeight($height){
             $this->height = $height;
-        }
-
-        public function setWidth($width){
             $this->width = $width;
+            $this->lines = $lines;
+            $this->fonts = $fonts;
         }
 
-        public function getNumber()
-        {
-            return $this->number;        
-        }
-            
-        public function getPosition()
-        {
-            return $this->position;        
-        }
+        public function getHtml(){
+            foreach ($this->lines as $value) {
+                # code...
+                $arrLine[] = $value->getHtml();
 
-        public function getTop()
-        {
-            return $this->top;        
-        }
-            
-        public function getLeft()
-        {
-            return $this->left;        
-        }
-
-        public function getHeight()
-        {
-            return $this->height;        
-        }
-        
-        public function getWidth()
-        {
-            return $this->width;        
+            }
+            return "<div>". implode(" ",$arrLine). "</div>";
         }
 
     };

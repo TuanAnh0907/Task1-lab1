@@ -5,39 +5,11 @@
         private $family;
         private $color;
 
-        public function getId()
+        public function __construct($id, $size, $family, $color)
         {
-            return $this->id;        
-        }
-
-        public function getSize()
-        {
-            return $this->size;        
-        }
-
-        public function getFamily()
-        {
-            return $this->family;        
-        }
-
-        public function getColor()
-        {
-            return $this->color;        
-        }
-        
-        public function setId($id){
             $this->id = $id;
-        }
-
-        public function setSize($size){
             $this->size = $size;
-        }
-
-        public function setFamily($family){
             $this->family = $family;
-        }
-
-        public function setColor($color){
             $this->color = $color;
         }
     }
