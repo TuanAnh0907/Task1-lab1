@@ -3,38 +3,40 @@
     require_once("Line.php");
     $document = "sample.xml";
     
-    $xml = simplexml_load_file($document);
+    $xml = simplexml_load_file($document); 
     
-    foreach ($xml->page as $value) {
+    foreach ($xml->children() as $page) {
 
-        foreach ($value->text as $key) {
+        foreach ($page->children() as $text) {
             
-            $top = $key->attributes()['top'];
-            $left = $key->attributes()['left'];
-            $width = $key->attributes()['width'];
-            $height = $key->attributes()['height'];
-            $font = $key->attributes()['font'];
-            $valueText = $key->__toString();
-            
-            $line = new Line($top, $left, $width, $height, $font, $valueText );
-            $arr[] = $line;
-            
+            $topLine = $text->attributes()['top'];
+            $leftLine = $text->attributes()['left'];
+            $widthLine = $text->attributes()['width'];
+            $heightLine = $text->attributes()['height'];
+            $fontLine = $text->attributes()['font'];
+
+            if($text->count()){
+                $child_text = $text->children();
+                $textLine = $child_text->saveXML(); 
+            }else{
+                $textLine = $text->__toString();
+            }
+            $line = new Line($topLine, $leftLine, $widthLine, $heightLine, $fontLine, $textLine );
+            $arrLine[] = $line;
         }
         
-        $number = $value->attributes()['number'];
-        $position = $value->attributes()['position'];
-        $top = $value->attributes()['top'];
-        $left = $value->attributes()['left'];
-        $height = $value->attributes()['height'];
-        $width = $value->attributes()['width'];
+        $numberPage = $page->attributes()['number'];
+        $positionPage = $page->attributes()['position'];
+        $topPage = $page->attributes()['top'];
+        $leftPage = $page->attributes()['left'];
+        $heightPage = $page->attributes()['height'];
+        $widthPage = $page->attributes()['width'];
         
-        $page = new Page($number,$position, $top, $left, $height, $width, $arr);
+        $page = new Page($numberPage, $positionPage, $topPage, $leftPage, $heightPage, $widthPage, $arrLine);
         
-        unset($arr);
-        
+        unset($arrLine);
+
         echo $page->getHtml();
-        
-        // var_dump($page);
-        // die();
     }
 ?>
+    

@@ -1,5 +1,6 @@
 <?php
     require_once("Line.php");
+    require_once("Font.php");
 
     class Page{
 
@@ -23,16 +24,41 @@
             $this->lines = $lines;
             $this->fonts = $fonts;
         } 
+        
+        public function getNumber(){
+            return $this->number;
+        }
 
         public function getHtml(){
-            foreach ($this->lines as $value) {
-                # code...
-                $arrLine[] = $value->getHtml();
+            
+            // $styleElement = fopen("style.css", "w+");
 
+            foreach ($this->lines as $line) {
+                # code...
+                
+                switch ( $line->getFont()) {
+                    case 0:
+                        # code...
+                        $tagName = "h3";
+                        break;
+                    case 1:
+                        # code...
+                        $tagName = "h2";
+                        break;
+                    default:
+                        # code...
+                        $tagName = "p";
+                        break;
+                }
+                     
+                $arrLine[] = "<".$tagName.">". $line->getHtml() . "</".$tagName.">";
             }
-            
-            
-            return "<div>". implode(" ",$arrLine). "</div>";
+
+            // var_dump($arrLine);
+            // die();
+
+            return "<div data-page = ".$this->getNumber()." style = 'padding : 20px; margin : 10px auto; max-width: 800px;' > \n 
+                    <p> Page ".$this->getNumber()."</p>\n ". implode(" ",$arrLine)."</div>";
         }
 
     };

@@ -1,4 +1,5 @@
 <?php
+
     class Line{
 
         private $top;
@@ -6,25 +7,28 @@
         private $width;
         private $height;
         private $font;
-        private $valueText;
+        private $textLine;
 
-        public function __construct($top,$left,$width,$height,$font,$valueText = "")
-        {
+        public function __construct($top,$left,$width,$height,$font,$textLine = ""){
             $this->top = $top;
             $this->left = $left;
             $this->width = $width;
             $this->height = $height;
             $this->font = $font;
-            $this->valueText = $valueText;
+            $this->textLine = $textLine;
         }
 
-        public function getValue()
-        {
-            return $this->valueText;
+        public function getText(){
+            return $this->textLine;
+        }
+
+        public function getFont(){
+            return $this->font;
         }
 
         public function getHtml(){
-            return "<p  >".$this->getValue()."</p>";
+            
+            return "<p  >".$this->getText()."</p>";
         }
     }
 ?>
