@@ -31,8 +31,6 @@
 
         public function getHtml(){
             
-            // $styleElement = fopen("style.css", "w+");
-
             foreach ($this->lines as $line) {
                 # code...
                 
@@ -53,9 +51,6 @@
                      
                 $arrLine[] = "<".$tagName.">". $line->getHtml() . "</".$tagName.">";
             }
-
-            // var_dump($arrLine);
-            // die();
 
             return "<div data-page = ".$this->getNumber()." style = 'padding : 20px; margin : 10px auto; max-width: 800px;' > \n 
                     <p> Page ".$this->getNumber()."</p>\n ". implode(" ",$arrLine)."</div>";
