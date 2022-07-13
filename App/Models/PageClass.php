@@ -1,6 +1,7 @@
 <?php
-    require_once("Line.php");
-    require_once("Font.php");
+    namespace App\Models;
+     
+    use App\Models\LineS;
 
     class Page{
 

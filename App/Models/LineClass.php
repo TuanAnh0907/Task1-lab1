@@ -1,4 +1,5 @@
 <?php
+    namespace App\Models;
 
     class Line{
 
@@ -28,7 +29,7 @@
 
         public function getHtml(){
             
-            return "<p  >".$this->getText()."</p>";
+            return $this->getText();
         }
     }
 ?>

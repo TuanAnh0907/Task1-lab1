@@ -1,5 +1,9 @@
 <?php
+
+    namespace App\Models;
+
     class Font{
+        
         private $id;
         private $size;
         private $family;

@@ -1,10 +1,19 @@
 <?php
-    require_once("Page.php");
-    require_once("Line.php");
-    $document = "sample.xml";
+    require __DIR__ . '/../vendor/autoload.php';
+
+    use App\Models\Line;
+    use App\Models\Page;
+    use App\Models\Font;
+
+    echo "Hahha";
+
+    $document = '../sample.xml';
     
     $xml = simplexml_load_file($document); 
-    
+
+    // var_dump($xml);
+    // die();
+
     foreach ($xml->children() as $page) {
 
         foreach ($page->children() as $text) {
@@ -14,7 +23,7 @@
             $widthLine = $text->attributes()['width'];
             $heightLine = $text->attributes()['height'];
             $fontLine = $text->attributes()['font'];
-
+            
             if($text->count()){
                 $child_text = $text->children();
                 $textLine = $child_text->saveXML(); 
@@ -23,7 +32,7 @@
             }
             $line = new Line($topLine, $leftLine, $widthLine, $heightLine, $fontLine, $textLine );
             $arrLine[] = $line;
-        }
+        }   
         
         $numberPage = $page->attributes()['number'];
         $positionPage = $page->attributes()['position'];
