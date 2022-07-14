@@ -27,9 +27,5 @@
             return $this->font;
         }
 
-        public function getHtml(){
-            
-            return $this->getText();
-        }
     }
 ?>

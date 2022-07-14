@@ -1,37 +1,50 @@
 <?php
     require __DIR__ . '/../vendor/autoload.php';
 
+    use App\Models\Document;
     use App\Models\Line;
     use App\Models\Page;
     use App\Models\Font;
 
-    echo "Hahha";
-
-    $document = '../App/sample.xml';
+    $file = '../sample.xml';
     
-    $xml = simplexml_load_file($document); 
-
-    // var_dump($xml);
-    // die();
+    $xml = simplexml_load_file($file); 
 
     foreach ($xml->children() as $page) {
 
-        foreach ($page->children() as $text) {
-            
-            $topLine = $text->attributes()['top'];
-            $leftLine = $text->attributes()['left'];
-            $widthLine = $text->attributes()['width'];
-            $heightLine = $text->attributes()['height'];
-            $fontLine = $text->attributes()['font'];
-            
-            if($text->count()){
-                $child_text = $text->children();
-                $textLine = $child_text->saveXML(); 
-            }else{
-                $textLine = $text->__toString();
+        foreach ($page->children() as $child_node) {
+
+            if ($child_node->getName() == 'text') {
+
+                # code...
+                $topLine = $child_node->attributes()['top'];
+                $leftLine = $child_node->attributes()['left'];
+                $widthLine = $child_node->attributes()['width'];
+                $heightLine = $child_node->attributes()['height'];
+                $fontLine = $child_node->attributes()['font'];
+                
+                if($child_node->count()){
+                    $child_text = $child_node->children();
+                    $textLine = $child_text->saveXML(); 
+                }else{
+                    $textLine = $child_node->__toString();
+                }
+
+                $line = new Line($topLine, $leftLine, $widthLine, $heightLine, $fontLine, $textLine );
+                $arrLine[] = $line;
+                
+            }elseif($child_node->getName() == 'fontspec'){
+
+                # code...
+                $id = $child_node->attributes()['id'];
+                $size = $child_node->attributes()['size'];
+                $family = $child_node->attributes()['family'];
+                $color = $child_node->attributes()['color'];
+
+                $font = new Font($id, $size, $family, $color);
+                $arrFont[] = $font;
+
             }
-            $line = new Line($topLine, $leftLine, $widthLine, $heightLine, $fontLine, $textLine );
-            $arrLine[] = $line;
         }   
         
         $numberPage = $page->attributes()['number'];
@@ -41,11 +54,18 @@
         $heightPage = $page->attributes()['height'];
         $widthPage = $page->attributes()['width'];
         
-        $page = new Page($numberPage, $positionPage, $topPage, $leftPage, $heightPage, $widthPage, $arrLine);
+        $page = new Page($numberPage, $positionPage, $topPage, $leftPage, $heightPage, $widthPage, $arrLine, $arrFont);
+
+        $arrPage[] = $page;
         
         unset($arrLine);
+        unset($arrFont);
 
-        echo $page->getHtml();
+        // echo $page->getHtml();
     }
+
+    $document = new Document($arrPage);
+    $document->showHtml();
+
 ?>
     

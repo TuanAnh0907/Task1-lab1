@@ -1,7 +1,7 @@
 <?php
     namespace App\Models;
      
-    use App\Models\LineS;
+    use App\Models\Line;
 
     class Page{
 
@@ -50,7 +50,7 @@
                         break;
                 }
                      
-                $arrLine[] = "<".$tagName.">". $line->getHtml() . "</".$tagName.">";
+                $arrLine[] = "<".$tagName.">". $line->getText() . "</".$tagName.">";
             }
 
             return "<div data-page = ".$this->getNumber()." style = 'padding : 20px; margin : 10px auto; max-width: 800px;' > \n 
