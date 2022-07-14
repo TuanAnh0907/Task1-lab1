@@ -7,7 +7,7 @@
 
     echo "Hahha";
 
-    $document = '../sample.xml';
+    $document = '../App/sample.xml';
     
     $xml = simplexml_load_file($document); 
 
