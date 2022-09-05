@@ -13,7 +13,9 @@ Thực hiện bởi [Phạm Tuấn Anh](https://github.com/TuanAnh0907)
 ## Kiến thức nắm được
 
 Hiểu và nắm được cách sử dụng một số kiểu đọc file có sẵn của php 
+
 Cách lọc qua các phần tử html để lấy nội dung
+
 Cách trìu tượng hóa đối với tài liệu
 
 Viết code chuẩn PSR
